@@ -1,0 +1,17 @@
+{% extends "tCap_reviews/base.html" %}
+
+{% block title %}Logowanie{% endblock %}
+
+{% block content %}
+    {% if form.errors %}
+      <p style="color:darkred">Błędne dane logowania!</p>
+    {% endif %}
+
+  <h2>Zaloguj się</h2>
+  <form action="{% url 'tCap_reviews:login' %}" method="POST">
+	{% csrf_token %}
+	{{ form.as_p }}
+    <br>
+	<input type="submit" value="Zatwierdź" class="btn btn-secondary" />
+  </form>
+{% endblock %}

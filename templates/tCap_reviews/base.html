@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{% block title %}ReReviews{% endblock %}</title>
+  </head>
+  <header style="background-color:skyblue">
+    <a href="{% url 'tCap_reviews:index' %}">Strona główna</a></br>
+    {% if user.is_authenticated %}
+        <a href="{% url 'tCap_reviews:logout' %}">Wyloguj się!</a>
+    {% else %}
+        <a href="{% url 'tCap_reviews:register' %}">Zarejestruj się!</a></br>
+        <a href="{% url 'tCap_reviews:login' %}">Zaloguj się!</a>
+    {% endif %}
+    <form class="d-flex" method=POST action="{% url 'tCap_reviews:searchAuthor' %}">
+        {% csrf_token %}
+        <input class="form-control me-2" type="search" placeholder="Wyszukaj twórcę" aria-label="Search" name="searchedPhrase">
+        <button class="btn btn-outline-secondary" type="submit">Szukaj</button>
+    </form>
+    <form class="d-flex" method=POST action="{% url 'tCap_reviews:searchOpus' %}">
+        {% csrf_token %}
+        <input class="form-control me-2" type="search" placeholder="Wyszukaj tekst" aria-label="Search" name="searchedPhrase">
+        <button class="btn btn-outline-secondary" type="submit">Szukaj</button>
+    </form>
+  </header>
+  {% block msg %}
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <p style="background-color:blueviolet ; font-size:200% ; text-align:center">{{ message }}</p><br>
+        {% endfor %}
+    </ul>
+    {% endif %}
+  {% endblock %}
+  <body>
+    {% block content %}
+    {% endblock %}
+  </body>
+</html>

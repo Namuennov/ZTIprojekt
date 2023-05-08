@@ -1,0 +1,10 @@
+{% extends "tCap_reviews/base.html" %}
+
+{% block title %}Wyszukani twórcy{% endblock %}
+
+{% block content %}
+    <h3>Wyszukani twórcy:</h3>
+    {% for author in results %}
+            <li><a href="{% url 'tCap_reviews:authorPage' author.id %}">{{ author.name }}</a></li>
+        {% endfor %}
+{% endblock %}

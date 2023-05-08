@@ -1,0 +1,10 @@
+{% extends "tCap_reviews/base.html" %}
+
+{% block title %}Wyszukane teksty{% endblock %}
+
+{% block content %}
+    <h3>Wyszukane teksty:</h3>
+    {% for opus in results %}
+            <li><a href="{% url 'tCap_reviews:opusPage' opus.id %}">{{ opus.name }}</a></li>
+        {% endfor %}
+{% endblock %}

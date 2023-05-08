@@ -1,0 +1,26 @@
+{% extends "tCap_reviews/base.html" %}
+
+{% block title %}{{ opus.name }}{% endblock %}
+
+{% block content %}
+    <h1>Recenzja tekstu {{ opus.name }} napisana przez eksperta {{ reviewer.username }}</h1>
+    <img src="{{ opus.image.url }}" height=300>
+    <p>{{ review.content }}</p>
+    <h1>Ocena: {{ review.rating }}</h1>
+    </br></br>
+    <h3>Komentarze:</h3>
+    {% for comment in commentsList %}
+        <li>
+        <b>{{ comment.1 }}</b>
+        </br>{{ comment.2 }}
+        </li>
+    {% endfor %}
+    {% if user.is_authenticated %}
+        <h3>Dodaj swój komentarz:</h3>
+        <form action="" method=POST>
+            {% csrf_token %}
+            {{ commentForm.as_p }}
+            <input type="submit" value="Skomentuj" class="btn btn-secondary">
+        </form>
+    {% endif %}
+{% endblock %}

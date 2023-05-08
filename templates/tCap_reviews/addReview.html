@@ -1,0 +1,13 @@
+{% extends "tCap_reviews/base.html" %}
+
+{% block title %}Dodawanie recenzji{% endblock %}
+
+{% block content %}
+    <h1>Dodajesz recenzję tekstu {{ opus.name }}</h1>
+    <br/><br/>
+    <form action="" method=POST>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Dodaj" class="btn btn-secondary">
+    </form>
+{% endblock %}

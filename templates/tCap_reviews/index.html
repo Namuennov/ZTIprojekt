@@ -1,0 +1,15 @@
+{% extends "tCap_reviews/base.html" %}
+
+{% block title %}ReReviews{% endblock %}
+
+{% block content %}
+    <h1>Cześć, witamy na ReReviews!</h1>
+    <h3>Przeglądaj teksty z wybranej kategorii:</h3>
+    {% for category in categoriesList %}
+            <li><a href="{% url 'tCap_reviews:categoryPage' category.id %}">{{ category.name }}</a></li>
+        {% endfor %}
+    <h3>Odkrywaj twórców:</h3>
+    {% for author in authorsList %}
+            <li><a href="{% url 'tCap_reviews:authorPage' author.id %}">{{ author.name }}</a></li>
+        {% endfor %}
+{% endblock %}

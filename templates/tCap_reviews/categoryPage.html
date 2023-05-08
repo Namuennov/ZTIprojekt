@@ -1,0 +1,11 @@
+{% extends "tCap_reviews/base.html" %}
+
+{% block title %}{{ category.name }}{% endblock %}
+
+{% block content %}
+    <h1>{{ category.name }}</h1>
+    <h3>Teksty z danej kategorii:</h3>
+    {% for opus in categoryOpuses %}
+        <li><a href="{% url 'tCap_reviews:opusPage' opus.id %}">{{ opus.name }}</a></li>
+    {% endfor %}
+{% endblock %}

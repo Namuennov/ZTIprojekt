@@ -1,0 +1,22 @@
+{% extends "tCap_reviews/base.html" %}
+
+{% block title %}{{ opus.name }}{% endblock %}
+
+{% block content %}
+    <h1>{{ opus.name }}</h1>
+    <img src="{{ opus.image.url }}" height=300>
+    <h3>Kategoria tekstu: {{ opus.categoryId }}</h3>
+    <h3>Autor tekstu: <a href="{% url 'tCap_reviews:authorPage' opus.authorId_id %}">{{ opus.authorId }}</a></h3>
+    <p>{{ opus.description }}</p>
+    </br></br>
+    {% if user.is_authenticated and user.is_staff %}
+        {% if didUserSubmittedReview %}
+            <h3><a href="{% url 'tCap_reviews:editReview' opus.id userReview.id %}">Edytuj swoją recenzję tego tekstu</a></h3>
+        {% else %}
+            <h3><a href="{% url 'tCap_reviews:addReview' opus.id %}">Dodaj recenzję tego tekstu</a></h3>
+        {% endif %}
+    {% endif %}
+    {% for review in reviewsList %}
+            <li><a href="{% url 'tCap_reviews:reviewPage' opus.id review.0 %}">Recenzja użytkownika {{ review.1 }}</a> (wystawiono ocenę {{ review.2 }})</li>
+        {% endfor %}
+{% endblock %}

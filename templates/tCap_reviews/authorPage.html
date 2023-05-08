@@ -1,0 +1,15 @@
+{% extends "tCap_reviews/base.html" %}
+
+{% block title %}{{ author.name }}{% endblock %}
+
+{% block content %}
+    <h1>{{ author.name }}</h1>
+    <img src="{{ author.image.url }}" height=300>
+    <h3>Narodowość: {{ author.nationalityId }}</h3>
+    <h3>Lata aktywności: {{ author.activityPeriod }}</h3>
+    <p>{{ author.description }}</p>
+    <h3>Teksty autora:</h3>
+    {% for opus in authorOpuses %}
+        <li><a href="{% url 'tCap_reviews:opusPage' opus.id %}">{{ opus.name }}</a></li>
+    {% endfor %}
+{% endblock %}
